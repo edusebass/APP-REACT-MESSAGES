@@ -15,7 +15,7 @@
 
     socket.on('chat message', (msg) => {
         const item = `<li>${msg}</li>`;
-        messages.insertAdjacentElement('beforeend', item);
+        messages.insertAdjacentHTML('beforeend', item);
     });
 
     form.addEventListener('submit', (e) => {
@@ -55,7 +55,7 @@
         position: relative;
     }
     #messages{
-
+        color: white;
     }
     #form{
         bottom: 0;
@@ -92,7 +92,8 @@
 </style>
 <body>
     <section id="chat">
-        <ul id="messages"></ul>
+        <ul id="messages">
+        </ul>
         <form id="form">
             <input type="text" name="message" id="input" placeholder="Ingresa un mensaje" autocomplete="off">
             <button type="submit">Enviar</button>

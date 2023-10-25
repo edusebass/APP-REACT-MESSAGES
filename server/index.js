@@ -1,39 +1,34 @@
 import express from 'express';
-import http from 'http';
+import logger from 'morgan';
+
 import { Server } from 'socket.io';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import cors from 'cors';
+import { createServer } from 'node:http';
 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const port = process.env.PORT ?? 3000;
 const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
-
-app.use(express.static(path.join(__dirname, '../client/')));
-app.use(cors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-}));
+const server = createServer(app);
+const io = new Server(server, {
+    connectionStateRecovery: {}
+});
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('a user coneccted');
 
-    socket.on('disconnect', () => {
-        console.log('a user disconnected');
+    socket.on('disconnect', () =>{
+        console.log('an user disconnected');
     });
-
     socket.on('chat message', (msg) => {
         io.emit('chat message', msg);
         console.log('chat message: ' + msg);
     });
 });
 
-const port = process.env.PORT || 3000;
-server.listen(port, () => {
-    console.log('Server listening on port ' + port);
+app.use(logger('dev'))
+
+app.get('/', (req, res) => {
+    res.sendFile(process.cwd() + '/client/index.html')
+});
+
+server.listen(port, () => { 
+    console.log('Port running on port ' + port);
 });

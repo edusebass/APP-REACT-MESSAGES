@@ -7,14 +7,6 @@
       "config": {
         "extensions": [".html"]
       }
-    },
-    {
-      "src": "client/**/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "styles/**/*.css",
-      "use": "@vercel/static-build"
     }
   ]
 }

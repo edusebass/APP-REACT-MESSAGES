@@ -3,6 +3,7 @@ import http from 'http';
 import { Server } from 'socket.io';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import cors from 'cors';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,6 +13,11 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 app.use(express.static(path.join(__dirname, '../client')));
+app.use(cors({
+    origin: 'https://app-react-messages-git-vercel-edusebass.vercel.app/',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+}));
 
 io.on('connection', (socket) => {
     console.log('a user connected');

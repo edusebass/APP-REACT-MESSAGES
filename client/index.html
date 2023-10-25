@@ -16,7 +16,7 @@
     socket.on('chat message', (msg) => {
         const item = `<li>${msg}</li>`;
         messages.insertAdjacentHTML('beforeend', item);
-        console.log(item);ss
+        console.log(item, msg);  
     });
 
     form.addEventListener('submit', (e) => {

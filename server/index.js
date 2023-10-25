@@ -4,6 +4,13 @@ import logger from 'morgan';
 import { Server } from 'socket.io';
 import { createServer } from 'node:http';
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const port = process.env.PORT ?? 3000;
 const app = express();
 const server = createServer(app);
@@ -24,6 +31,8 @@ io.on('connection', (socket) => {
 });
 
 app.use(logger('dev'))
+
+app.use(express.static(path.join(__dirname, '../client')));
 
 app.get('/', (req, res) => {
     res.sendFile(process.cwd() + '/client/index.html')

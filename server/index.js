@@ -35,7 +35,7 @@ app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, '../client')));
 
 app.get('/', (req, res) => {
-    res.sendFile(process.cwd() + '/client/index.html')
+    res.sendFile(process.cwd() + '/index.html')
 });
 
 server.listen(port, () => { 

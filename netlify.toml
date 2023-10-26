@@ -1,1 +1,8 @@
+[build]
+  command = "npm run build"  # El comando para construir tu proyecto (o el que sea necesario)
+  publish = "dist"           # La carpeta que contiene los archivos a desplegar (por ejemplo, después de ejecutar npm run build)
 
+[[redirects]]
+  from = "/*"
+  to = "/src/client/index.html"
+  status = 200

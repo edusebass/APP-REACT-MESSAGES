@@ -33,13 +33,12 @@ io.on('connection', (socket) => {
     });
 });
 
-
-
 app.get('/', (req, res) => {
-    res.sendFile(process.cwd() + '/index.html')
+    res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
+
 
 server.listen(port, () => { 
     console.log('Port running on port ' + port);
-    console.log('directiorio: ' + __dirname)
+    console.log('directiorio: ' + __dirname + 'nombre: ' +  __filename)
 });

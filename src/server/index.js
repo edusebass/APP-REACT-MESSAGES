@@ -12,7 +12,7 @@ const io = new Server(server, {
     }
 });
 
-app.use(express.static(path.resolve(__dirname, '../../src/client/')));
+app.use(express.static(path.resolve(__dirname, '../../src/client')));
 
 io.on('connection', (socket) => {
     console.log('a user connected');

@@ -1,2 +1,2 @@
 /node_modules/
-/src/.netlify/functions/ably-token-request/node_modules/
+/.netlify/functions/ably-token-request/node_modules/

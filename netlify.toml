@@ -1,8 +1,9 @@
 [build]
-  command = "npm run build" # o el comando que necesites para construir tu aplicación
-  functions = "functions" # la carpeta donde estarán las funciones de Netlify (funciones serverless)
-
+  command = "npm run build" 
+  functions = "functions" 
+  
 [[redirects]]
   from = "/*"
-  to = "/server/index.js"
+  to = "/client/index.html"
   status = 200
+

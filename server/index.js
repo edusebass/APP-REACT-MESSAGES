@@ -12,7 +12,7 @@ const io = new Server(server, {
     }
 });
 
-app.use(express.static(path.resolve(__dirname, '../../src/client')));
+app.use(express.static(path.resolve(__dirname, '../client')));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
 
 // Ruta para servir el archivo index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../../src/client/index.html'));
+    res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
 const port = process.env.PORT || 3000;

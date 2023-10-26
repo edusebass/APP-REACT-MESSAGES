@@ -18,6 +18,9 @@ const io = new Server(server, {
     connectionStateRecovery: {}
 });
 
+app.use(logger('dev'))
+app.use(express.static(path.resolve(__dirname, '../client')));
+
 io.on('connection', (socket) => {
     console.log('a user coneccted');
 
@@ -30,9 +33,7 @@ io.on('connection', (socket) => {
     });
 });
 
-app.use(logger('dev'))
 
-app.use(express.static(path.join(__dirname, '../client')));
 
 app.get('/', (req, res) => {
     res.sendFile(process.cwd() + '/index.html')

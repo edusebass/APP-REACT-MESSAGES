@@ -41,4 +41,5 @@ app.get('/', (req, res) => {
 
 server.listen(port, () => { 
     console.log('Port running on port ' + port);
+    console.log('directiorio: ' + __dirname)
 });

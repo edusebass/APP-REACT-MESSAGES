@@ -6,6 +6,10 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
+    cors: {
+        origin: "*", // Reemplaza esto con el dominio de tu sitio en Netlify
+        methods: ["GET", "POST"]
+    }
 });
 
 app.use(express.static(path.resolve(__dirname, '../client/')));

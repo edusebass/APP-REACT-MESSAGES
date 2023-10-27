@@ -4,6 +4,10 @@ import logger from 'morgan';
 import { Server } from 'socket.io';
 import { createServer } from 'node:http';
 
+import { connectDB } from './db.js'
+
+connectDB()
+
 const port = process.env.PORT ?? 3000;
 const app = express();
 const server = createServer(app);

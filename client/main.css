@@ -36,10 +36,16 @@ body{
 
 #messages > li{
     padding: .5rem 1rem;
+
 }
 
 #messages > li:nth-child(odd){
     background: #000;
+}
+
+.cabMsg{
+    overflow: hidden;
+    
 }
 
 span {
@@ -49,7 +55,13 @@ span {
     color: #ccc2c2;
 }
 
- /*  */
+.spanFecha{
+    color: rgb(125, 205, 255);
+    float: right;
+}
+
+/**/
+
 #form{
     bottom: 0;
     display: flex;

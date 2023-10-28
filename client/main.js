@@ -34,7 +34,6 @@ form.addEventListener('submit', (e) => {
             messageNombre: nombre, 
             messageChat: message,
             fechaMsg: fecha});
-        nombreInput.value = '';
         inputMessage.value = '';
     }
 });

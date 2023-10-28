@@ -7,33 +7,28 @@ export function initSocket(server) {
     });
 
     io.on('connection', async (socket) => {
-        console.log('a user connected');
+        console.log('Un usuario se ha conectado');
 
         socket.on('disconnect', () => {
-            console.log('a user disconnected');
+            console.log('Un usuario se ha desconectado');
         });
-
-        // const messages = await Note.find();
-        // socket.emit('initial messages', messages);
 
         const emitNotes = async () => {
             try {
                 const notes = await Note.find();
-                console.log('Notas obtenidas de la base de datos:', notes);
+                console.log('Mensajes obtenidos de la base de datos:', notes);
                 socket.emit('initial messages', notes);
             } catch (error) {
-                console.error('Error al obtener notas:', error);
-            }const notes = await Note.find();
-            console.log(notes)
-        }
+                console.error('Error al obtener mensajes:', error);
+            }
+        };
         emitNotes();
-
 
         socket.on('chat message', async (msg) => {
             io.emit('chat message', msg);
-            console.log('chat message: ' + msg);
-            const newNote = new Note({ msg });
+            console.log('Mensaje de chat recibido:', msg.messageNombre, msg.message);
             try {
+                const newNote = new Note({ msg: msg.message, nombre: msg.messageNombre });
                 const savedNote = await newNote.save();
                 console.log('Mensaje guardado en la base de datos:', savedNote);
             } catch (error) {

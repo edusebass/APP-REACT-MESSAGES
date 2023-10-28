@@ -1,27 +1,12 @@
 import { createServer } from 'node:http';
-import { Server as WebSocketServer } from 'socket.io';
 import app from './app.js';
 import { connectDB } from './db.js';
+import { initSocket } from './sockets.js';
 
 connectDB();
 
 const server = createServer(app);
-const io = new WebSocketServer(server, {
-    connectionStateRecovery: {}
-});
-
-io.on('connection', (socket) => {
-    console.log('a user connected');
-
-    socket.on('disconnect', () => {
-        console.log('a user disconnected');
-    });
-
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-        console.log('chat message: ' + msg);
-    });
-});
+const io = initSocket(server);
 
 const PORT = process.env.PORT || 3000;
 

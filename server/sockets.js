@@ -16,7 +16,7 @@ export function initSocket(server) {
         const emitNotes = async () => {
             try {
                 const notes = await Note.find();
-                console.log('Mensajes obtenidos de la base de datos:', notes);
+                console.log('Mensajes obtenidos de la base de datos');
                 socket.emit('initial messages', notes);
             } catch (error) {
                 console.error('Error al obtener mensajes:', error);
@@ -26,11 +26,14 @@ export function initSocket(server) {
 
         socket.on('chat message', async (msg) => {
             io.emit('chat message', msg);
-            console.log('Mensaje de chat recibido:', msg.messageNombre, msg.message);
+            console.log('Mensaje de chat recibido:', msg.messageNombre, msg.messageChat, msg.fechaMsg);
             try {
-                const newNote = new Note({ msg: msg.message, nombre: msg.messageNombre });
+                const newNote = new Note({ 
+                    msg: msg.messageChat, 
+                    nombre: msg.messageNombre,
+                    fecha: msg.fechaMsg});
                 const savedNote = await newNote.save();
-                console.log('Mensaje guardado en la base de datos:', savedNote);
+                console.log('Mensaje guardado en la base de datos');
             } catch (error) {
                 console.error('Error al guardar el mensaje:', error);
             }

@@ -29,6 +29,8 @@ body{
     list-style-type: none;
     margin: 0;
     padding: 0;
+    height: 92%;
+    overflow-y: auto;
 }
 
 #messages > li{
